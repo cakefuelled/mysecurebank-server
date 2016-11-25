@@ -1,12 +1,13 @@
 {
-  "name": "hackathon-starter",
-  "version": "4.3.0",
-  "description": "A boilerplate for Node.js web applications",
+  "name": "MySecureBank",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Web application security training",
   "repository": {
     "type": "git",
     "url": "https://github.com/sahat/hackathon-starter.git"
   },
-  "author": "Sahat Yalkabov",
+  "author": "Alejandro U. Alvarez",
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
