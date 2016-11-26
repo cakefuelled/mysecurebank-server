@@ -16,7 +16,8 @@ var MongoClient = require('mongodb').MongoClient;
 const User = require('../models/User');
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  console.log('serializer', user, user._id);
+  done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -32,11 +33,16 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
     var url = 'mongodb://localhost:27017/test';
     MongoClient.connect(url, function(err, db) {
       var query = {
-        $where: "this.email === " + email
+        $where: "this.email === '" + email + "' && this.password === '" + password + "'"
       };
 
       db.collection('users').find(query).each(function(err, user) {
         console.log(user);
+        if(user){
+          return done(null, user);
+        }
+
+        return done(null, false, { msg: 'Invalid email or password.' });
       });
       db.close();
     });
