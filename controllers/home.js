@@ -36,13 +36,13 @@ exports.thankYou = (req,res) => {
 	res.render('thankyou',{
 		message: 'Thank you for submitting data '+name
 	});
-}
+};
 
 exports.transferGet = (req, res) => {
     res.render('transfer', {
         title: 'Transfer'
     });
-}
+};
 
 exports.transferPost = (req, res) => {
     var recipient = req.body.recipient;
@@ -51,4 +51,4 @@ exports.transferPost = (req, res) => {
     res.render('thankyou', {
         message: 'Thank you for transferring '+amount+' to '+recipient
     })
-}
+};

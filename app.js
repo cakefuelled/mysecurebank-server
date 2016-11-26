@@ -120,7 +120,7 @@ app.get('/', homeController.index);
 app.get('/xss', homeController.xss);
 app.post('/xss', homeController.postXss);
 app.get('/thankyou', homeController.thankYou);
-app.get('/transfer', homeController.transfcerGet);
+app.get('/transfer', homeController.transferGet);
 app.post('/transfer', homeController.transferPost);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
