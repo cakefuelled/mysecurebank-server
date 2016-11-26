@@ -92,7 +92,7 @@ app.use((req, res, next) => {
   }
 });
 app.use(lusca.xframe('SAMEORIGIN'));
-app.use(lusca.xssProtection(true));
+//app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
@@ -117,6 +117,9 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * Primary app routes.
  */
 app.get('/', homeController.index);
+app.get('/xss', homeController.xss)
+app.post('/xss', homeController.postXss)
+app.get('/thankyou', homeController.thankYou)
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
