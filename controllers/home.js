@@ -48,6 +48,8 @@ exports.transferPost = (req, res) => {
     var recipient = req.body.recipient;
     var amount = req.body.amount;
 
+    res.set('Access-Control-Allow-Origin','*');
+
     res.render('thankyou', {
         message: 'Thank you for transferring '+amount+' to '+recipient
     })
