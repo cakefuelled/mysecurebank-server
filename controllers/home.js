@@ -34,7 +34,8 @@ exports.thankYou = (req,res) => {
 	console.log(name);
     res.set('X-XSS-Protection', 0);
 	res.render('thankyou',{
-		message: 'Thank you for submitting data '+name
+		message: 'Thank you for submitting data '+name,
+        name: name
 	});
 };
 
