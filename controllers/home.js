@@ -14,22 +14,6 @@ exports.xss = (req, res) => {
   });
 };
 
-/*
-const nodemailer = require('nodemailer');
-
-const transporter = nodemailer.createTransport({
-  service: 'SendGrid',
-  auth: {
-    user: process.env.SENDGRID_USER,
-    pass: process.env.SENDGRID_PASSWORD
-  }
-});
-*/
-
-/**
- * POST /contact
- * Send a contact form via Nodemailer.
- */
 exports.postXss = (req, res) => {
   req.assert('name', 'Name cannot be blank').notEmpty();
   var name = req.body.name;
@@ -43,32 +27,6 @@ exports.postXss = (req, res) => {
   else {
   	return res.redirect('/thankyou?name=' + name)
   }
-
-
-
-
-  
-
-  /*
-  const mailOptions = {
-    to: 'your@email.com',
-    from: `${req.body.name} <${req.body.email}>`,
-    subject: 'Contact Form | Hackathon Starter',
-    text: req.body.message
-  };
-  */
-
-
-  /*
-  transporter.sendMail(mailOptions, (err) => {
-    if (err) {
-      req.flash('errors', { msg: err.message });
-      return res.redirect('/contact');
-    }
-    req.flash('success', { msg: 'Email has been sent successfully!' });
-    res.redirect('/contact');
-  });
-  */
 };
 
 exports.thankYou = (req,res) => {
@@ -76,6 +34,21 @@ exports.thankYou = (req,res) => {
 	console.log(name);
     res.set('X-XSS-Protection', 0);
 	res.render('thankyou',{
-		name : name
+		message: 'Thank you for submitting data '+name
 	});
+}
+
+exports.transferGet = (req, res) => {
+    res.render('transfer', {
+        title: 'Transfer'
+    });
+}
+
+exports.transferPost = (req, res) => {
+    var recipient = req.body.recipient;
+    var amount = req.body.amount;
+
+    res.render('thankyou', {
+        message: 'Thank you for transferring '+amount+' to '+recipient
+    })
 }
