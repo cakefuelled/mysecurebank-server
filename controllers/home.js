@@ -74,6 +74,7 @@ exports.postXss = (req, res) => {
 exports.thankYou = (req,res) => {
 	var name = req.query.name;
 	console.log(name);
+    res.set('X-XSS-Protection', 0);
 	res.render('thankyou',{
 		name : name
 	});
